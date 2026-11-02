@@ -1,35 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 320px;
+    min-height: 100%;
+}
+
 body {
-    color: #fff;
-    background: #17181c;
-    font-family: sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    color: #f1f5f9;
+    background: #111827;
+    font-family: Arial, sans-serif;
 }
 
 header {
-    padding: 10px 30px;
+    padding: 28px 24px 20px;
+    text-align: center;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
 }
 
 header h1 {
-    font-size: 40px;
+    margin: 0;
+    color: #f8fafc;
+    font-size: clamp(28px, 5vw, 42px);
     font-weight: 800;
+    letter-spacing: 1px;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 24px 40px;
 }
 
 footer {
-    height: 100px;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px 24px;
+    background: #1e293b;
+    border-top: 1px solid #334155;
 }
+
 footer .copyright {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 0;
+    color: #94a3b8;
     font-size: 14px;
-    color: #333;
     text-align: center;
 }
-footer .copyright a {
-    color: #444;
+
+footer a {
+    color: #70d6ff;
+    text-decoration: none;
+    transition: color 0.2s;
 }
-footer .copyright a:hover {
-    color: #555;
+
+footer a:hover {
+    color: #a5e8ff;
 }
-footer .copyright:before {
-    content: '©';
+
+footer .rss-logo {
+    display: block;
+    width: 42px;
+    height: auto;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+footer a:hover .rss-logo {
+    opacity: 1;
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 22px 16px;
+    }
+
+    main {
+        padding: 16px 12px 28px;
+    }
+
+    footer {
+        padding: 20px 12px;
+    }
 }
