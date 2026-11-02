@@ -1,5 +1,7 @@
+
 {
-    "plugins": ["prettier", "import"],
+    "root": true,
+    "plugins": ["prettier", "import", "@typescript-eslint"],
     "extends": [
         "plugin:prettier/recommended",
         "prettier"
@@ -15,7 +17,23 @@
     },
     "rules": {
         "no-debugger": "off",
-        "no-console": 0,
+        "no-console": "off",
         "class-methods-use-this": "off"
-    }
+    },
+    "overrides": [
+        {
+            "files": ["**/*.ts"],
+            "parser": "@typescript-eslint/parser",
+            "parserOptions": {
+                "sourceType": "module"
+            },
+            "plugins": ["@typescript-eslint"],
+            "extends": [
+                "plugin:@typescript-eslint/recommended"
+            ],
+            "rules": {
+                "@typescript-eslint/no-explicit-any": "error"
+            }
+        }
+    ]
 }
