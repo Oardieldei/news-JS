@@ -15,10 +15,10 @@ export interface Article {
     url: string;
 }
 
-export interface NewsResponse {
-    articles?: Article[];
-}
+export type NewsResponse = Partial<{
+    articles: Article[];
+}>;
 
-export interface SourcesResponse {
-    sources?: NewsSource[];
-}
+export type SourcesResponse = Partial<{
+    sources: NewsSource[];
+}>;

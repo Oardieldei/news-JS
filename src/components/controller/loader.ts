@@ -1,4 +1,12 @@
-type RequestOptions = Record<string, string | number | boolean>;
+export enum HttpMethod {
+    GET = 'GET',
+    POST = 'POST',
+    PUT = 'PUT',
+    PATCH = 'PATCH',
+    DELETE = 'DELETE',
+}
+
+type RequestOptions = Readonly<Record<string, string | number | boolean>>;
 
 class Loader {
     private baseLink: string;
@@ -9,16 +17,16 @@ class Loader {
         this.options = options;
     }
 
-    getResp<T>(
+    public getResp<T>(
         { endpoint, options = {} }: { endpoint: string; options?: RequestOptions },
         callback: (data: T) => void = () => {
             console.error('No callback for GET response');
         }
     ): void {
-        this.load<T>('GET', endpoint, callback, options);
+        this.load<T>(HttpMethod.GET, endpoint, callback, options);
     }
 
-    errorHandler(res: Response): Response {
+    public errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404) {
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -30,7 +38,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: RequestOptions, endpoint: string): string {
+    public makeUrl(options: RequestOptions, endpoint: string): string {
         const urlOptions = { ...this.options, ...options };
         const searchParams = new URLSearchParams();
 
@@ -41,7 +49,12 @@ class Loader {
         return `${this.baseLink}${endpoint}?${searchParams.toString()}`;
     }
 
-    load<T>(method: string, endpoint: string, callback: (data: T) => void, options: RequestOptions = {}): void {
+    public load<T>(
+        method: HttpMethod,
+        endpoint: string,
+        callback: (data: T) => void,
+        options: RequestOptions = {}
+    ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json() as Promise<T>)
