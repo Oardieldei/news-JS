@@ -14,3 +14,11 @@ export interface Article {
     description: string | null;
     url: string;
 }
+
+export interface NewsResponse {
+    articles?: Article[];
+}
+
+export interface SourcesResponse {
+    sources?: NewsSource[];
+}

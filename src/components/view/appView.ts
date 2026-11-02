@@ -1,14 +1,6 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import type { Article, NewsSource } from '../../types/news';
-
-interface NewsResponse {
-    articles?: Article[];
-}
-
-interface SourcesResponse {
-    sources?: NewsSource[];
-}
+import type { NewsResponse, SourcesResponse } from '../../types/news';
 
 export class AppView {
     private news: News;
